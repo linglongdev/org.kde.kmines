@@ -1,0 +1,208 @@
+version: "1"
+
+package:
+  id: org.kde.kmines
+  name: KMines
+  version: 4.0.23085.0
+  kind: app
+  description: |
+    KMINES : the KDE minesweeper
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+command:
+  - "/opt/apps/org.kde.kmines/files/bin/kmines"
+
+build: |
+  echo "" > $PREFIX/packages.list
+  bash ./install_dep linglong/sources $PREFIX
+
+  cd /project/linglong/sources/kmines.git
+
+  mkdir build
+  cd build
+
+  cmake .. \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX}
+  cmake --build . --target install
+
+sources:
+  - kind: git
+    url: "https://invent.kde.org/games/kmines.git"
+    version: release/23.08
+    commit: 4e1634d222ad763c715865af34be9964a0d401ff
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/q/qt6-base/libqt6widgets6_6.6.1%2Bdfsg-5deepin3_amd64.deb"
+    digest: 5d22275db35cbc5bc2c3e34c6f5eb74e6c04eb8b4c81ef2e8c436ed1d7a936ae
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kconfig/libkf5config-dev_5.103.0-2_amd64.deb"
+    digest: 787121c02ea1a9f14bde15d89db67095339f4d764ab11f521e78aae31afc3329
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kconfigwidgets/libkf5configwidgets-dev_5.103.0-1deepin1_amd64.deb"
+    digest: bdd8d733df1b62456519057bec49e84b106a1d1de816dd685509609452756181
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcoreaddons/libkf5coreaddons-dev_5.103.0-1_amd64.deb"
+    digest: 990c4afdae209b8b10e22fd9fb57f934e587f2600b43f3a29381f0bc9d62e256
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcrash/libkf5crash-dev_5.103.0-1_amd64.deb"
+    digest: 8aab1a2dd7cd3eb9c505c15081e8f49932e8df6f87a2e48e47d31bc9a179df6a
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kdbusaddons/libkf5dbusaddons-dev_5.103.0-1_amd64.deb"
+    digest: a1d140a5abe078cd424db31f15dd7ac75fa505c796455d70c821c09f3995df0c
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/ki18n/libkf5i18n-dev_5.103.0-1_amd64.deb"
+    digest: 8544a919761badfe3f15cbd9caaea6dd90b94755aad9c456a181b4d0490888ef
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/ktextwidgets/libkf5textwidgets-dev_5.103.0-1_amd64.deb"
+    digest: 6324a5e2e9909e74a439856833a98398654c1211bc8b3d4b487e3df0f8c1486d
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kwidgetsaddons/libkf5widgetsaddons-dev_5.103.0-1_amd64.deb"
+    digest: bb50ffb4113e0d26b26f45c8bd57c8ce88f18cb6c4a4ebc1fe86a22fb82022b4
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kxmlgui/libkf5xmlgui-dev_5.103.0-1_amd64.deb"
+    digest: 0f58958ce83541f64b4ef71fce72beb6b8d8ecca3acdcc591637e4d5e8de041b
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kconfig/libkf5configcore5_5.103.0-2_amd64.deb"
+    digest: f56cbcb73cbbbfd138b6469f6c9810d1a7843659d846d39a9763da94cfcd591a
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kconfig/libkf5configgui5_5.103.0-2_amd64.deb"
+    digest: 9cb474c57a0c6da09b97a15e88c5a151df5df301e7f47e43e07ca4779293ceaa
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kconfig/libkf5configqml5_5.103.0-2_amd64.deb"
+    digest: eb204eb42c03d68721e66b54281c5c5a08ccfe1815e34d4b1a4a35d8f5f87140
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kconfig/libkf5config-dev-bin_5.103.0-2_amd64.deb"
+    digest: 876b81964ef9810ac768290e3a6522a8b644120dbdb50badc5a7d29635fbbd27
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kconfig/libkf5config-bin_5.103.0-2_amd64.deb"
+    digest: 5fa053a9c84859417b880081d69d091d604e7784ecd1acb8ee60d39e7ed16a45
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcoreaddons/libkf5coreaddons-dev-bin_5.103.0-1_amd64.deb"
+    digest: e44897d4ce38767d0221ce1694cc69bb3c5ed2e2914cb1f340b4a9a2246a343c
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcoreaddons/libkf5coreaddons5_5.103.0-1_amd64.deb"
+    digest: d29f2e93411c71dbc5bf3552c88a9e3e11cc488b156e969e154418070e46e686
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcrash/libkf5crash5_5.103.0-1_amd64.deb"
+    digest: b2bc2dff9bd56d321ff74fa82235b33a419be9acd1a2fa14e56e35c4bf2cc7f0
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kdbusaddons/libkf5dbusaddons5_5.103.0-1_amd64.deb"
+    digest: 31269a781a662bfe1dba131a3f98f90aa41d7eb440b5bb1513b80ac00a9ba089
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/ki18n/libkf5i18n5_5.103.0-1_amd64.deb"
+    digest: 100702bfd60d507e1bab5e5fb868f8ebe56dd634394cc0cd29ca2aadf7cca04f
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/ki18n/libkf5i18nlocaledata5_5.103.0-1_amd64.deb"
+    digest: 977f247705fb752899962c4c5b38d0402d9540b8f18494ae0f9578a051cd060f
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kwidgetsaddons/libkf5widgetsaddons5_5.103.0-1_amd64.deb"
+    digest: 5aeaedcf8cf31e987e99a8851a73b442a0d25f1401c5c6f2df51f077ea520e26
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kconfigwidgets/libkf5configwidgets5_5.103.0-1deepin1_amd64.deb"
+    digest: e8c908d20ff2725d557fa6e61c092db8f8de800e90c423e2f7872e89aaf330a5
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kauth/libkf5auth-dev_5.103.0-1_amd64.deb"
+    digest: 639ab587eb05c56a0e3fdbd2612a489549c411f9dab7bb64975c50c6ab975ecd
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kauth/libkf5authcore5_5.103.0-1_amd64.deb"
+    digest: 37f3b84830fd7dadd5342d302afb459f7587e2139cc4576c7d5eac9053561924
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kauth/libkf5auth5_5.103.0-1_amd64.deb"
+    digest: 28dd4172fab1f9214db6a62161506f6aca738078872db48da4e0f82d4b7ff925
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kauth/libkf5auth-dev-bin_5.103.0-1_amd64.deb"
+    digest: a726a7d6db097970b1fc3ed240771f95ea93bd9f4de5a8fb6e84e11fa3db110f
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcodecs/libkf5codecs-dev_5.103.0-1_amd64.deb"
+    digest: 437bb9d6130b7c1b64147785adf5119df54ff36bb8e3e3e06731701046b8f77b
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcodecs/libkf5codecs5_5.103.0-1_amd64.deb"
+    digest: 2976dac3bbe0f23903ba78aaf64dc940bec8f1fad4dab75d12ffdbf63c4e9237
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kxmlgui/libkf5xmlgui5_5.103.0-1_amd64.deb"
+    digest: 253a75b25f388b3a33ae761580f833ef146b6c1418f9a53f6e16485a24c84672
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/s/sonnet/libkf5sonnet-dev_5.103.0-1_amd64.deb"
+    digest: e785b1266fe7105306f6e7baaac40586410f120d12eba958f29b1fa10d3d4f39
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/s/sonnet/libkf5sonnetcore5_5.103.0-1_amd64.deb"
+    digest: 7a88fc6bfdf8e16736d9b855fb4d7741314db6ec7d37cfa73be7b04f8b7586a8
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/s/sonnet/libkf5sonnetui5_5.103.0-1_amd64.deb"
+    digest: 57580e2858f1c522fad38ef6186e9c6c3916e3c148b4bcbb4a805b8f197ff082
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/ktextwidgets/libkf5textwidgets5_5.103.0-1_amd64.deb"
+    digest: beafc31e5cf4b2d6933a35e8e29fdd69df9ea79727fc08272c3c8a96f234deaf
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/libk/libkdegames/libkf5kdegames-dev_22.12.3-1_amd64.deb"
+    digest: c88d27508045254ea574b3e1fb3abd28fcb8874e48fbe6007ce951822e1a6f18
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcompletion/libkf5completion-dev_5.103.0-1_amd64.deb"
+    digest: 3a31dfc2fc720ac12b6a9edcef6fbf62c49eedfd314e8e342df010c6cc3f18fc
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kcompletion/libkf5completion5_5.103.0-1_amd64.deb"
+    digest: 13aec017a2b7e973483391cbc2a4ecf2219f11a25c2a86e267e1b731ab3395ac
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/libk/libkdegames/libkf5kdegamesprivate7_22.12.3-1_amd64.deb"
+    digest: fe0c3fd63b4fa23255c86def56662af4a265cdf865ef59eb772adc9a9ba60cb0
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/libk/libkdegames/libkf5kdegames7_22.12.3-1_amd64.deb"
+    digest: df724d9f8eb180ef46f73800022bfc51d25e8a392affb6a0bd2103eac4c10010
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/libx/libxslt/libxslt1.1_1.1.34-4_amd64.deb"
+    digest: 57b60e3910615c73c78c090eb6f5a3d69c13638e2f212fe651a610e6b6d72ced
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/o/openal-soft/libopenal1_1.19.1-2_amd64.deb"
+    digest: 6519188f969234cbdc9e3cb8346d86339b1f766db083e2519cfdc68b917e00ae
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/knewstuff/libkf5newstuffwidgets5_5.103.0-1_amd64.deb"
+    digest: c4cf4c7b77fb84ac3fd0ae9c38af49364d644c870274d45639d3bc9bd46d8ab2
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kiconthemes/libkf5iconthemes5_5.103.0-1_amd64.deb"
+    digest: a92f8adb1adab0f32646ce9502015dc5e7887c2c13c68fd8e480730510de639c
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kguiaddons/libkf5guiaddons5_5.103.0-1_amd64.deb"
+    digest: e8ad42ae1fde96f256e71ac8e2b91bcf321fda70df45acb790f5817500f17c26
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kglobalaccel/libkf5globalaccel5_5.103.0-1_amd64.deb"
+    digest: 6eff2e3c2f1924dc69b58c9d5ee86c50a53f013e4727794f861e4ca978b575d8
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kitemviews/libkf5itemviews5_5.103.0-1_amd64.deb"
+    digest: 01b12bf1059601f359c596db02f7cbc5f55ae3bf9d042270e66071b9cf926a9f
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/karchive/libkf5archive5_5.103.0-1_amd64.deb"
+    digest: 80996cafcc09a819be3735e90db93ba033dfd5d88aec9b403ae632aaa27f0603
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/knewstuff/libkf5newstuff5_5.103.0-1_amd64.deb"
+    digest: 1380e0aa1e780f35d853924345b5487c595a71e87a8c042bb40be312a5a95eff
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/knewstuff/libkf5newstuffcore5_5.103.0-1_amd64.deb"
+    digest: b4c5f7c6fbf9486057b2f7a46b5810d2ac14a3a5d0f04b6ee6b6254b6412d82f
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kio/libkf5kiogui5_5.103.0-1_amd64.deb"
+    digest: 9ff34fdd4d8c6153e89f9ff7658bec769c1c0b0e22fcb1e3ab2d67da08f55a94
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kservice/libkf5service5_5.103.0-1_amd64.deb"
+    digest: 160c74f0493c5fd7b2ec7162f8e866c4c0523ad1e430d691825606c3ceea28e8
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kjobwidgets/libkf5jobwidgets5_5.103.0-1_amd64.deb"
+    digest: ac0fcd6dd2fb82ffbb7a4efa8e268f674e9b9e72e9aeea99dda07eeeca526d70
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kpackage/libkf5package5_5.103.0-1_amd64.deb"
+    digest: 65269c82ba16b2a2db1b61784f65dd11701c4cae6ae089dc688aa8490072d9fa
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kio/libkf5kiocore5_5.103.0-1_amd64.deb"
+    digest: ef33df8167bf6405daa4295a72f1d14a4fa1892439cda4338d49e717454799f4
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/k/kwindowsystem/libkf5windowsystem5_5.103.0-1_amd64.deb"
+    digest: 212ccf98b11d8e2fef1376e121ba7303e8bdf8ab41ea33f2bd8a12bfb938bfad
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/a/attica-kf5/libkf5attica5_5.103.0-1_amd64.deb"
+    digest: c87f427342c80b2b3357848f4da9870bd5a6a167a45ebe27f9000097ba0d5d02
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/s/syndication/libkf5syndication5abi1_5.103.0-1_amd64.deb"
+    digest: 93946bd06c64fac6a9e31c6cbcf179b3882a380e32a986209d7c9d3dc13ab211
+  - kind: file
+    url: "https://mirrors.ustc.edu.cn/deepin/beige/pool/main/s/sndio/libsndio7.0_1.5.0-3_amd64.deb"
+    digest: aed22e5c4d4734dd70ea33993c33816409d15c1e6355d376abbd7ffccde29adc
